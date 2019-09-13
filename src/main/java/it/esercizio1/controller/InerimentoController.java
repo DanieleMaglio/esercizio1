@@ -22,6 +22,7 @@ public class InerimentoController {
     
     private List<String> continenti;
     private List<String> paesi;
+    
     @GetMapping("/")
     public String main(Model model){
         continenti=DbConnector.getContinenti();
@@ -30,8 +31,9 @@ public class InerimentoController {
         return "continente";
     }
     
-    @PostMapping("/stato")
-    public String mainWithResources(String continente, Model model){
+    @GetMapping("/stato")
+    public String mainWithResources(
+            @RequestParam(name="continente", required=true,defaultValue="")String continente, Model model){
         paesi=DbConnector.getPaesi(continente);
         model.addAttribute("varStato", paesi);
         
