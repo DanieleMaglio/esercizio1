@@ -10,6 +10,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -18,14 +20,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class InerimentoController {
     
-    List<String> continenti;
-    
+    private List<String> continenti;
+    private List<String> paesi;
     @GetMapping("/")
     public String main(Model model){
         continenti=DbConnector.getContinenti();
         model.addAttribute("continenti", continenti);
         
         return "continente";
+    }
+    
+    @PostMapping("/stato")
+    public String mainWithResources(String continente, Model model){
+        paesi=DbConnector.getPaesi(continente);
+        model.addAttribute("varStato", paesi);
+        
+        return "stato";
     }
     
 }

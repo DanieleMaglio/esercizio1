@@ -26,7 +26,7 @@ public class DbConnector {
     private static final String PASSWORD="admin";
     private final static String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String SELECT_CONTINENTS="select Continent from country;";
-    
+    private static final String SELECT_STATE="select Name from country where Continent=(?);";
     public static Connection connetti() throws SQLException{
         try{
             Class.forName(DRIVER);
@@ -56,5 +56,21 @@ public class DbConnector {
             Logger.getLogger(DbConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
         return continenti;
+    }
+    
+    public static List<String> getPaesi(String continente){
+        List<String> paesi=new ArrayList();
+        try(Connection conn=connetti();
+                PreparedStatement pstmt=conn.prepareStatement(SELECT_STATE);){
+            pstmt.setString(1, continente);
+            ResultSet rs=pstmt.executeQuery();
+            while(rs.next()){
+                paesi.add(rs.getString("Name"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return paesi;
     }
 }
