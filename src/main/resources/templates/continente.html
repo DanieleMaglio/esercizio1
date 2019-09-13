@@ -13,18 +13,15 @@
 
 
 <body>
-<main role="main" class="container">
-
-    <div class="starter-template">
-	    <form action="pagin.php" method="GET" name="form">
-	    Scegli il Continente:
-	    	<input type="radio"/> 
-			    <ol>
-			    	<li th:each="continente : ${continenti}" th:text="${continente}"></li>
-			    </ol>
+	    <form>
+	    	<ul>
+	    		<span th:each="cont : ${continenti}">
+		    		<input type="radio" name= "continente" th:value="${cont}" th:text="${cont}"/>
+	
+	    		</span>
+	    	</ul>
 	 	</form>
-    </div>
-</main>
+
 <!-- /.container -->
 
 <script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
