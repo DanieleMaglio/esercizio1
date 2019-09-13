@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -8,8 +8,11 @@
 	<form th:action="@{/citta}" method="post">
 		<ul>
 			<span th:each="stato : ${varStato}">
-				 <select name="stato" th:value="${stato}" th:text="${stato}">
-				 </select>				
+				<!-- <select name="stato" th:value="${stato}" th:text="${stato}"> </select>--> 
+	    		<select name="stato" form="stato">
+				  <option value="stato">
+				</select>
+				 	<input type="submit" value="Invio">			
 				
 			</span>
 		</ul>
