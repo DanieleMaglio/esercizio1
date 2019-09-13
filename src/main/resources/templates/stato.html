@@ -5,10 +5,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
+	<form th:action="@{/citta}" method="post">
 		<ul>
-			<span>
-			
+			<span th:each="stato : ${varStato}">
+				 <select name="stato" th:value="${stato}" th:text="${stato}">
+				 </select>				
+				
 			</span>
 		</ul>
 	</form>
