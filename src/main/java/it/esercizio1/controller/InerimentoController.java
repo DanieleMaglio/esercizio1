@@ -40,4 +40,10 @@ public class InerimentoController {
         return "stato";
     }
     
+    /*@PostMapping("/citta")
+    public String mainWithResources(String stato){
+    
+    }*/
+    
+    
 }
