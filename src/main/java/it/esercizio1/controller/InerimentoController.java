@@ -22,7 +22,7 @@ public class InerimentoController {
     
     private List<String> continenti;
     private List<String> paesi;
-    
+    private List<String> citta;
     @GetMapping("/")
     public String main(Model model){
         continenti=DbConnector.getContinenti();
@@ -40,10 +40,26 @@ public class InerimentoController {
         return "stato";
     }
     
-    /*@PostMapping("/citta")
-    public String mainWithResources(String stato){
-    
-    }*/
+    @PostMapping("/citta")
+    public String mainPost(@RequestParam("stato")String stato, Model model){
+        System.out.println(stato);
+        citta=DbConnector.getCitta(stato);
+        
+        model.addAttribute("citta", citta);
+        
+        return "citta";
+    }
+    @GetMapping("/risultato")
+    public String fine(
+    @RequestParam(name="nome",required=true,defaultValue="") 
+    String nome, 
+     @RequestParam(name="distretto",required=true,defaultValue="")String distretto, Model model){
+        DbConnector.inerimentoCitta(nome,distretto);
+        model.addAttribute("messaggio", "Bravissimo compa sei un campione");
+        
+        
+        return "risultato";
+    }
     
     
 }

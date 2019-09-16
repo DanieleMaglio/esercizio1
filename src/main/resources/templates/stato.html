@@ -2,19 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Stato</title>
 </head>
 <body>
 	<form th:action="@{/citta}" method="post">
 		<ul>
-			<select name="stato" form="stato">
-			<!-- <select name="stato" th:value="${stato}" th:text="${stato}"> </select>--> 
-				<span th:each="stato : ${varStato}">
-		  			<option th:value="${stato}" th:text="${stato}">
-				</span>
-			</select>
+		
+				<!-- <select name="stato" th:value="${stato}" th:text="${stato}"> </select>--> 
+	    		<select name="stato">
+                            <span th:each="stato : ${varStato}">
+				  <option th:value="*{stato}" th:text="${stato}">
+
+				</select>
+			</span>
+				
+				
 		</ul>
-		<input type="submit" value="Invio">	
+            <input type="submit" value="Invio">
 	</form>
 </body>
 </html>
